@@ -1,0 +1,144 @@
+/* Base Styles */
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+              url('https://files.catbox.moe/ew33a6.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* Loading Screen */
+#loading-screen {
+  transition: opacity 0.8s ease-out;
+}
+
+.animate-loading-bar {
+  animation: loadingBar 2s ease-in-out infinite;
+}
+
+@keyframes loadingBar {
+  0% { width: 0%; }
+  50% { width: 100%; }
+  100% { width: 0%; }
+}
+
+/* Payment Elements */
+.payment-btn {
+  background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+}
+
+.payment-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.8);
+}
+
+.payment-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { transform: rotate(30deg) translate(-30%, -30%); }
+  100% { transform: rotate(30deg) translate(30%, 30%); }
+}
+
+.wallet-option, .donate-option {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  color: #22d3ee;
+  padding: 10px 20px;
+  border-radius: 6px;
+  width: 100%;
+  text-align: left;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.wallet-option:hover, .donate-option:hover {
+  background: rgba(34, 211, 238, 0.1);
+  border-color: rgba(34, 211, 238, 0.6);
+  transform: translateX(5px);
+}
+
+.contact-btn {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+  background: rgba(34, 211, 238, 0.1);
+  border-color: rgba(34, 211, 238, 0.6);
+  transform: scale(1.1);
+}
+
+/* Cyber Theme Effects */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #0ff,
+      0 0 40px #0ff,
+      0 0 80px #0ff;
+  }
+  20%, 24%, 55% {        
+    text-shadow: none;
+  }
+}
+
+.cyber-text {
+  animation: flicker 3s infinite alternate;
+}
+
+/* Transitions */
+.hidden {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.show {
+  display: block;
+  opacity: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .payment-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  
+  .wallet-option, .donate-option {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}

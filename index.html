@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShiinPay - Payments</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" href="https://files.catbox.moe/ew33a6.jpg">
+</head>
+<body class="bg-gray-900 text-white font-mono">
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="fixed inset-0 bg-black z-50 flex flex-col items-center justify-center">
+    <img src="https://files.catbox.moe/ew33a6.jpg" class="w-32 h-32 object-cover rounded-full border-4 border-cyan-400 animate-pulse">
+    <div class="text-4xl text-cyan-400 mt-6 font-bold tracking-wider">
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">SHIIN</span>PAY
+    </div>
+    <div class="text-gray-400 mt-2">Initializing payment gateway...</div>
+    <div class="w-64 h-1 bg-gray-800 mt-4 overflow-hidden">
+      <div class="h-full bg-cyan-500 animate-loading-bar"></div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content" class="hidden min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-black via-purple-900 to-blue-900 p-6 text-center border-b border-cyan-400/20">
+      <div class="flex items-center justify-center space-x-4">
+        <img src="https://files.catbox.moe/ew33a6.jpg" class="w-16 h-16 rounded-full border-2 border-cyan-400">
+        <h1 class="text-4xl font-bold tracking-wider">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">SHIIN</span>PAY
+        </h1>
+      </div>
+      <p class="text-gray-300 mt-2">Digital payment gateway</p>
+    </header>
+
+    <!-- About Section -->
+    <div id="about-section" class="p-8 max-w-2xl mx-auto text-center">
+      <h2 class="text-2xl text-cyan-400 mb-4">About This Service</h2>
+      <p class="text-gray-300 mb-6">
+        Welcome to ShiinPay - your digital payment solution.
+        This platform provides anonymous.
+      </p>
+      <button id="start-btn" class="px-8 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg text-white font-bold tracking-wider hover:scale-105 transition-transform duration-300 shadow-lg shadow-cyan-500/20">
+        <i class="fas fa-terminal mr-2"></i>START PAYMENT GATEWAY
+      </button>
+    </div>
+
+    <!-- Payment Container -->
+    <div id="payment-container" class="hidden max-w-md mx-auto p-6">
+      <!-- E-Wallet Section -->
+      <div class="payment-group mb-8">
+        <button id="e-wallet-btn" class="payment-btn w-full">
+          <i class="fas fa-wallet mr-2"></i>E-WALLET
+        </button>
+        <div id="e-wallet-content" class="hidden mt-4 space-y-3">
+          <button onclick="copyToClipboard('081246493375')" class="wallet-option">
+            <i class="fab fa-google-wallet mr-2"></i>DANA: 0812-4649-3375
+          </button>
+		  <button onclick="copyToClipboard('081248845231')" class="wallet-option">
+            <i class="fas fa-mobile-alt mr-2"></i>GOPAY: 0812-4884-5231
+          </button>
+          <button onclick="copyToClipboard('081248845231')" class="wallet-option">
+            <i class="fas fa-mobile-alt mr-2"></i>OVO: 0812-4884-5231
+          </button>
+          <button onclick="openQR()" class="wallet-option">
+            <i class="fas fa-qrcode mr-2"></i>QRIS PAYMENT
+          </button>
+        </div>
+      </div>
+
+      <!-- Bank Section -->
+      <div class="payment-group mb-8">
+        <button id="bank-btn" class="payment-btn w-full">
+          <i class="fas fa-university mr-2"></i>BANK TRANSFER
+        </button>
+        <div id="bank-content" class="hidden mt-4 space-y-3">
+          <button onclick="copyToClipboard('BRI_NUMBER')" class="wallet-option">
+            <i class="fas fa-landmark mr-2"></i>BRI: Belum Tersedia
+          </button>
+          <button onclick="copyToClipboard('BNI_NUMBER')" class="wallet-option">
+            <i class="fas fa-piggy-bank mr-2"></i>BNI: Belum Tersedia
+          </button>
+        </div>
+      </div>
+
+      <!-- Donate Section -->
+      <div class="payment-group">
+        <button id="donate-btn" class="payment-btn w-full">
+          <i class="fas fa-hand-holding-usd mr-2"></i>DONATION LINKS
+        </button>
+        <div id="donate-content" class="hidden mt-4 space-y-3">
+          <button onclick="openLink('https://trakteer.id')" class="donate-option">
+            <i class="fas fa-coffee mr-2"></i>Trakteer
+          </button>
+          <button onclick="openLink('https://saweria.co')" class="donate-option">
+            <i class="fas fa-heart mr-2"></i>Saweria
+          </button>
+          <button onclick="openLink('https://www.buymeacoffee.com')" class="donate-option">
+            <i class="fas fa-mug-hot mr-2"></i>Buy Me A Coffee
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact & Footer -->
+    <footer class="mt-12 py-8 bg-gradient-to-l from-black via-purple-900 to-blue-900 border-t border-cyan-400/20">
+      <div class="text-center">
+        <h3 class="text-xl text-cyan-400 mb-4">CONTACT ADMIN</h3>
+        <div class="flex justify-center space-x-6 mb-6">
+          <button onclick="openLink('https://wa.me/6281248845231')" class="contact-btn">
+            <i class="fab fa-whatsapp text-2xl"></i>
+          </button>
+          <button onclick="copyToClipboard('kzy.help@gmail.com')" class="contact-btn">
+            <i class="fas fa-envelope text-2xl"></i>
+          </button>
+        </div>
+        <div class="text-gray-400 text-sm">
+          © 2025 SHIINPAY | Payment Gateway
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
